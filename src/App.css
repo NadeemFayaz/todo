@@ -55,3 +55,10 @@ input, button {
   margin: 0.5rem;
 }
 
+.completed {
+  text-decoration: line-through;
+}
+
+.task-container {
+  display: flex;
+}

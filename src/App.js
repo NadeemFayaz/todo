@@ -1,42 +1,23 @@
-import React, { useState } from 'react';
-import './App.css';
+import { useState } from "react";
 
-function App() {
-  const [tasks, setTasks] = useState([]);
-  const [input, setInput] = useState('');
+export default function() {
+  const [inputVal, setInputVal] = useState('');
 
-  const addTask = () => {
-    if (!input.trim()) return; // Prevent adding empty tasks
-    setTasks([...tasks, { id: Date.now(), text: input, completed: false }]);
-    setInput(''); // Clear input field
+  
+  const handleChange = (event) => {
+    setInputVal(event.target.value);
   };
-
-  const toggleCompletion = (id) => {
-    setTasks(tasks.map(task =>
-      task.id === id ? { ...task, completed: !task.completed } : task
-    ));
+     
+  function handleClick() {
+    setInputVal(inputVal);
+    console.log(setInputVal);
   };
-
-  const removeTask = (id) => {
-    setTasks(tasks.filter(task => task.id !== id));
-  };
-
-  return (
-    <div className="App">
-      <h1>Todo List</h1>
-      <input value={input} onChange={(e) => setInput(e.target.value)} />
-      <button onClick={addTask}>Add Task</button>
-      <ul>
-        {tasks.map(task => (
-          <li key={task.id} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
-            {task.text}
-            <button onClick={() => toggleCompletion(task.id)}>Toggle</button>
-            <button onClick={() => removeTask(task.id)}>Remove</button>
-          </li>
-        ))}
-      </ul>
+        return (
+    <div>
+      <h1>hello</h1>
+      {/* Corrected function name in onChange prop */}
+      <input type="text" placeholder="enter text" value={inputVal} onChange={handleChange}></input>
+      <button onClick={handleClick}>Submit</button>
     </div>
   );
 }
-
-export default App;
